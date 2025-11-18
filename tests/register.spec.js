@@ -1,10 +1,6 @@
 const { test, expect } = require('@playwright/test');
-const { faker } = require('@faker-js/faker');
-const firstName = faker.person.firstName();
-const lastName = faker.person.lastName();
-const email = faker.internet.email();
-const passwordLength = Math.floor(Math.random() * (72 - 8 + 1)) + 8;
-const password = faker.internet.password(passwordLength);
+const userData = require('../userData/userData');
+const locators = require('../locators/registrationLocators');
 
 test('registration test', async ({ page }) => {
     await page.goto('/');
@@ -12,18 +8,16 @@ test('registration test', async ({ page }) => {
     await frame.getByRole('link', { name: 'Create account' }).click();
     await expect(frame.locator('header.page-header h1')).toHaveText('Create an account');
 
-    await frame.locator('#field-id_gender-1').check();
-    await frame.locator('#field-firstname').fill(firstName);
-    await frame.locator('#field-lastname').fill(lastName);
-    await frame.locator('#field-email').fill(email);
-    await frame.locator('#field-password').fill(password);
-    await frame.locator('#field-birthday').fill('12/12/2012');
-    await frame.locator('input[name="psgdpr"]').check();
-    await frame.locator('input[name="customer_privacy"]').check();
-    await frame.locator('button[data-link-action="save-customer"]').click();
-
-
-
-
+    await frame.locator(locators.genderMale).check();
+    await frame.locator(locators.firstName).fill(userData.firstName);
+    await frame.locator(locators.lastName).fill(userData.lastName);
+    await frame.locator(locators.email).fill(userData.email);
+    await frame.locator(locators.password).fill(userData.password);
+    await frame.locator(locators.birthday).fill('12/12/2012');
+    await frame.locator(locators.gdprCheckbox).check();
+    await frame.locator(locators.privacyCheckbox).check();
+    await frame.locator(locators.submitButton).click();
+    await console.log(userData);
 
 });
+
