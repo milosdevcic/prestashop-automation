@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const userData = require('../userData/userData');
 const locators = require('../locators/registrationLocators');
 
-test('registration test', async ({ page }) => {
+test.only ('registration test', async ({ page }) => {
     await page.goto('/');
     const frame = page.frameLocator('#framelive');
     await frame.getByRole('link', { name: 'Create account' }).click();
