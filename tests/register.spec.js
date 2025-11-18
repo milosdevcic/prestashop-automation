@@ -7,7 +7,7 @@ const passwordLength = Math.floor(Math.random() * (72 - 8 + 1)) + 8;
 const password = faker.internet.password(passwordLength);
 
 test('registration test', async ({ page }) => {
-    await page.goto('https://demo.prestashop.com/');
+    await page.goto('/');
     const frame = page.frameLocator('#framelive');
     await frame.getByRole('link', { name: 'Create account' }).click();
     await expect(frame.locator('header.page-header h1')).toHaveText('Create an account');
@@ -21,7 +21,7 @@ test('registration test', async ({ page }) => {
     await frame.locator('input[name="psgdpr"]').check();
     await frame.locator('input[name="customer_privacy"]').check();
     await frame.locator('button[data-link-action="save-customer"]').click();
-    
+
 
 
 
