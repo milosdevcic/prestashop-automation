@@ -19,5 +19,7 @@ test('registration test', async ({ page }) => {
     await frame.locator(locators.submitButton).click();
     await console.log(userData);
 
+
+
 });
 
