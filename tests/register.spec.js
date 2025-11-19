@@ -36,7 +36,11 @@ test ('registration test', async ({ page }) => {
 
     await console.log(`Hello ${userData.firstName}, you have successfully created your account!`);
 
-    await console.log(userData);
+    await console.log(`Your credentials:`);
+    await console.log(`First name: ${userData.firstName}`);
+    await console.log(`Last name: ${userData.lastName}`);
+    await console.log(`Email: ${userData.email}`);
+    await console.log(`Password: ${userData.password}`);
 
     await expect(frame.locator(locators.logoutButton)).toBeVisible();
     await frame.locator(locators.logoutButton).click();
