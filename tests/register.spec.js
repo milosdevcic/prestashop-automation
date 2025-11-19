@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test');
 const userData = require('../userData/userData');
 const locators = require('../locators/registrationLocators');
+const fs = require("fs");
 
-test.only ('registration test', async ({ page }) => {
+test ('registration test', async ({ page }) => {
     await page.goto('/');
     const frame = page.frameLocator('#framelive');
     await frame.getByRole('link', { name: 'Create account' }).click();
@@ -18,6 +19,7 @@ test.only ('registration test', async ({ page }) => {
     await frame.locator(locators.privacyCheckbox).check();
     await frame.locator(locators.submitButton).click();
     await console.log(userData);
+    fs.writeFileSync("lastCreatedUser.json", JSON.stringify(userData, null, 2));
 
 
 
