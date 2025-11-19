@@ -11,7 +11,8 @@ const registrationLocators = {
     gdprCheckbox: 'input[name="psgdpr"]',
     newsletterCheckbox: 'input[name="newsletter"]',
     privacyCheckbox: 'input[name="customer_privacy"]',
-    submitButton: 'button[data-link-action="save-customer"]'
+    submitButton: 'button[data-link-action="save-customer"]',
+    logoutButton: 'a.logout.hidden-sm-down'
 };
 
 module.exports = registrationLocators;
